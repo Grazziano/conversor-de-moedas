@@ -8,11 +8,15 @@ class ConversorMoedas extends Component {
     return (
       <div>
         <h1>Conversor de Moedas</h1>
+        <Alert variant="danger" show={false}>
+          Erro obtendo dados de conversão, tente novamente.
+        </Alert>
+
         <Alert>
           <Form>
             <Container fluid="md">
               <Row>
-                
+
                 <Col sm="3">
                   <Form.Control placeholder="0" value={1} required />
                 </Col>
