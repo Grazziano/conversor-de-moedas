@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Button, Form, Col, Spinner, Row, Container } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Modal, Row, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,6 +8,7 @@ class ConversorMoedas extends Component {
     return (
       <div>
         <h1>Conversor de Moedas</h1>
+
         <Alert variant="danger" show={false}>
           Erro obtendo dados de conversão, tente novamente.
         </Alert>
@@ -42,6 +43,21 @@ class ConversorMoedas extends Component {
               </Row>
             </Container>
           </Form>
+
+          <Modal show={false}>
+
+            <Modal.Header closeButton>
+              <Modal.Title>Conversão</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>Reaultado da Conversão</Modal.Body>
+
+            <Modal.Footer>
+              <Button variant="success">Nova Conversão</Button>
+            </Modal.Footer>
+
+          </Modal>
+
         </Alert>
       </div>
     )
