@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import ConversorMoedas from './components/ConversorMoedas';
+import React, { Component } from 'react';
+import ConversorMoedas from './components/ConversorMoeda';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ConversorMoedas />      
+        <ConversorMoedas />
       </div>
-    )
+    );
   }
 }
 
