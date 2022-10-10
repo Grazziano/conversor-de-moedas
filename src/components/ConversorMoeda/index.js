@@ -16,7 +16,8 @@ import ListarMoedas from '../ListarMoedas';
 import axios from 'axios';
 
 function ConversorMoedas() {
-  const FIXED_URL = 'http://data.fixer.io/api/latest?access_key=eba7130a5b2d720ce43eb5fcddd47cc3';
+  const FIXED_URL =
+    'http://data.fixer.io/api/latest?access_key=eba7130a5b2d720ce43eb5fcddd47cc3';
 
   const [valor, setValor] = useState('1');
   const [moedaDe, setMoedaDe] = useState('BRL');
@@ -25,6 +26,7 @@ function ConversorMoedas() {
   const [formValidado, setFormValidado] = useState(false);
   const [exibirModal, setExibirModal] = useState(false);
   const [resultadoConversao, setResultadoConversao] = useState('');
+  const [exibirMsgErro, setExibirMsgErro] = useState(false);
 
   function handleValor(event) {
     setValor(event.target.value.replace(/\D/g, ''));
@@ -53,12 +55,23 @@ function ConversorMoedas() {
     if (event.currentTarget.checkValidity() === true) {
       setExibirSpinner(true);
 
-      axios.get(FIXED_URL).then((res) => {
-        const cotacao = obterCotacao(res.data);
-        setResultadoConversao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
-        setExibirModal(true);
-        setExibirSpinner(false);
-      });
+      axios
+        .get(FIXED_URL)
+        .then((res) => {
+          const cotacao = obterCotacao(res.data);
+
+          if (cotacao) {
+            setResultadoConversao(
+              `${valor} ${moedaDe} = ${cotacao} ${moedaPara}`
+            );
+            setExibirModal(true);
+            setExibirSpinner(false);
+            setExibirMsgErro(false);
+          } else {
+            exibirErro();
+          }
+        })
+        .catch((err) => exibirErro());
     }
   }
 
@@ -74,11 +87,16 @@ function ConversorMoedas() {
     return cotacao.toFixed(2);
   }
 
+  function exibirErro() {
+    setExibirMsgErro(true);
+    setExibirSpinner(false);
+  }
+
   return (
     <div>
       <h1>Conversor de Moedas</h1>
 
-      <Alert variant="danger" show={false}>
+      <Alert variant="danger" show={exibirMsgErro}>
         Erro obtendo dados de conversão, tente novamente.
       </Alert>
 
