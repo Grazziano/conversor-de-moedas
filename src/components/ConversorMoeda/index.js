@@ -13,8 +13,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import ListarMoedas from '../ListarMoedas';
+import axios from 'axios';
 
 function ConversorMoedas() {
+  const FIXED_URL = 'http://data.fixer.io/api/latest?access_key=eba7130a5b2d720ce43eb5fcddd47cc3';
+
   const [valor, setValor] = useState('1');
   const [moedaDe, setMoedaDe] = useState('BRL');
   const [moedaPara, setMoedaPara] = useState('USD');
@@ -48,9 +51,27 @@ function ConversorMoedas() {
     setFormValidado(true);
 
     if (event.currentTarget.checkValidity() === true) {
-      // TODO implementar a chamada ao Fixer.io
-      setExibirModal(true);
+      setExibirSpinner(true);
+
+      axios.get(FIXED_URL).then((res) => {
+        const cotacao = obterCotacao(res.data);
+        setResultadoConversao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
+        setExibirModal(true);
+        setExibirSpinner(false);
+      });
     }
+  }
+
+  function obterCotacao(dadosCotacao) {
+    if (!dadosCotacao || dadosCotacao.success !== true) {
+      return false;
+    }
+
+    const cotacaoDe = dadosCotacao.rates[moedaDe];
+    const cotacaoPara = dadosCotacao.rates[moedaPara];
+    const cotacao = (1 / cotacaoDe) * cotacaoPara * valor;
+
+    return cotacao.toFixed(2);
   }
 
   return (
