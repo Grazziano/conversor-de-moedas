@@ -1,6 +1,7 @@
 {
   "name": "conversor-de-moedas",
   "version": "0.1.0",
+  "homepage": "conversor-de-moedas/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
