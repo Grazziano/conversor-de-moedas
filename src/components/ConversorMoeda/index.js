@@ -93,7 +93,7 @@ function ConversorMoedas() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Conversor de Moedas</h1>
 
       <Alert variant="danger" show={exibirMsgErro}>
