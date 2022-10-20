@@ -39,7 +39,21 @@ Para abrir e rodar o projeto, entre na pasta do frontend execute npm i para inst
 
 Depois, acesse <a href="http://localhost:3000/">http://localhost:3000/</a> no seu navegador.
 
-## Projeto em produção
+### Usando Docker
+
+Se tiver o docker-compose instalado no computador, após clonar o projeto basta rodar o comando abaixo para criar e iniciar os contêineres:
+
+```
+docker-compose up -d
+```
+
+Para paralisar e remover todos os contêineres use o comando:
+
+```
+docker-compose down
+```
+
+### Projeto em produção
 Este projeto pode ser visualizado neste [link](https://grazziano.github.io/conversor-de-moedas/).
 
 ## 📚 Mais informações
