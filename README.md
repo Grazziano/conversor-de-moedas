@@ -39,6 +39,9 @@ Para abrir e rodar o projeto, entre na pasta do frontend execute npm i para inst
 
 Depois, acesse <a href="http://localhost:3000/">http://localhost:3000/</a> no seu navegador.
 
+## Projeto em produção
+Este projeto pode ser visualizado neste [link](https://grazziano.github.io/conversor-de-moedas/).
+
 ## 📚 Mais informações
 
 Entre em contato pelo [linkedin](https://www.linkedin.com/in/grazziano-fagundes/).
